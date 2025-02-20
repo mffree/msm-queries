@@ -1,0 +1,12 @@
+<h1>eldest director</h1>
+
+<%
+min_dob = Director.minimum(:dob)
+eldest_director = Director.where({ :dob => min_dob }).at(0)
+min_dob_formatted = min_dob.strftime("%B %e, %Y")
+%>
+
+<p>
+The eldest director in our dataset right now is is <a href="/directors/<%= eldest_director.id %>"><%= eldest_director.name %></a>, born on <%= min_dob_formatted %>.
+
+</p>
