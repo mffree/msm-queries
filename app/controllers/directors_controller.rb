@@ -1,8 +1,11 @@
 class DirectorsController < ApplicationController
+
+  # Director index page
   def index
     render({ :template => "director_templates/list" })
   end
 
+  # Director details page
   def show
     the_id = params.fetch("the_id")
     matching_records = Director.where({ :id => the_id })

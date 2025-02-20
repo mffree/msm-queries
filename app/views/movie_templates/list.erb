@@ -1,0 +1,43 @@
+
+<%#= Movie.all.at(0) %>
+
+<h1>List of all movies</h1>
+
+<!--Getting the director for each movie-->
+<%# Director.all.where({ :id => a_movie.director_id })%>
+
+
+<table border="1">
+
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+    </tr>
+
+  <% Movie.all.each do |a_movie| %>
+
+  
+  <tr>
+    <td><%= a_movie.id %></td>
+    <td>
+      <img src="<%= a_movie.image %>">
+    </td>
+    <td><%= a_movie.title %></td>
+    <td><%= a_movie.year %></td>
+    <td>
+      <% a_movie_director = a_movie.director_id %>
+      <%= Director.all.where({ :id => a_movie_director }).at(0).name %> <!--Getting the name of the director whose id is the same as the movie's director_id-->
+    </td>
+    <td>
+      <a href="/movies/<%= a_movie.id%>">Show details</a> <!--COME BACK TO THIS-->
+    </td>
+  </tr>
+
+  <% end %>
+
+
+</table>
