@@ -1,0 +1,64 @@
+<!-- Getting the details for each director -->
+
+<h1>Director #<%= @the_director.id %> details</h1>
+
+<a href="/directors">Go back</a>
+
+<hr>
+
+<dl> <!--HTML Description List-->
+  <dt>Name</dt> <!--HTML Description Title-->
+  <dd><%= @the_director.name %></dd> <!--HTML Description Data-->
+
+  <dt>Dob</dt>
+  <dd><%= @the_director.dob %></dd>
+
+  <dt>Bio</dt>
+  <dd><%= @the_director.bio %></dd>
+
+  <dt>Image</dt>
+  <dd><img src="<%= @the_director.image %>"></dd>
+
+  <dt>Created at</dt>
+  <dd><%= @the_director.created_at%></dd>
+
+  <dt>Updated at</dt>
+  <dd><%= @the_director.updated_at%></dd>
+
+</dl>
+
+<!-- Getting the filmography of each director-->
+
+<h1>Filmography</h1>
+
+<% matching_movies = Movie.where({ :director_id => @the_director }) %>
+
+<table border="1">
+
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+  </tr>
+
+<% matching_movies.each do |a_movie| %>
+  <tr>
+    <td><%= a_movie.id %></td>
+    <td>
+      <img src="<%= a_movie.image %>" width="200">
+    </td>
+    <td><%= a_movie.title %></td>
+    <td><%= a_movie.year %></td>
+    <td><%= @the_director.name %></td>
+    <td>
+      <a href="/movies/<%= a_movie.id %>">
+        Show details
+      </a> <!--Will come back to this once we create the movies pages-->
+    </td>
+  </tr>
+<% end %>
+
+
+</table>
