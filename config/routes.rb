@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   get("/movies/:the_id", { :controller => "movies", :action => "show" }) # dynamic route for the movie details
 
+  get("/actors", { :controller => "actors", :action => "index" }) # movies index page
+
+  get("/actors/:the_id", { :controller => "actors", :action => "show" }) # dynamic route for the movie details
+
 
 end
